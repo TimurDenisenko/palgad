@@ -150,11 +150,10 @@ def lepani(x:list,y:list):
     """Kirjeldus...
     :param list x: Inimeste järjend
     :param list y: Palgade järjend
-    :rtype:str
     """
-    nimi=input("Kelle palk tahad leia? ").title()
+    nimi=input("Kelle palk tahad leia? ")
     while nimi not in x:
-        nimi=input("Palun kirjuta õige nimi ").title()
+        nimi=input("Palun kirjuta õige nimi ")
     n=x.count(nimi)
     if n!=1:
         print(f"Siin on mõned inimesed kes nimi on {nimi}") 
@@ -180,9 +179,9 @@ def suva(x:list,y:list):
     palk=float(palk)
     for i in range(len(x)):
         if y[i]>palk: 
-            print(f"{x[i]} saab suurem kui {palk}")
+            print(f"{x[i]} saab suurem kui {palk}, ta saab {y[i]}")
         elif y[i]<palk: 
-            print(f"{x[i]} saab väiksem kui {palk}")
+            print(f"{x[i]} saab väiksem kui {palk}, ta saab {y[i]}")
         else:
             print(f"{x[i]} saab täpselt {palk}")
 
@@ -190,7 +189,6 @@ def tomami(x:list,y:list):
     """Kirjeldus...
     :param list x: Inimeste järjend
     :param list y: Palgade järjend
-    :rtype:str
     """
     kopia=y.copy()
     for i in range(3):
@@ -209,19 +207,19 @@ def keskmine(x:list,y:list):
     """Kirjeldus...
     :param list x: Inimeste järjend
     :param list y: Palgade järjend
-    :rtype:str
     """
     kesk=sum(y)/len(y)
     print(f"Keskmine palk on {kesk}")
     for i in range(len(x)):
-        if y[i]>=kesk:
+        if y[i]>kesk:
             print(f"{x[i]} saab suurem kui keskmine palk, ta saab {y[i]}")
+        elif y[i]==kesk:
+            print(f"{x[i]} saab täpselt keskmine palk")
 
 def tulumaks(x:list,y:list): 
     """Kirjeldus...
     :param list x: Inimeste järjend
     :param list y: Palgade järjend
-    :rtype:str
     """
     for i in range(0,len(y)):
         if y[i]<500:
@@ -310,3 +308,61 @@ def tint(x:list,y:list):
         y[i]=round(y[i],1) 
         y[i]=int(y[i])
     return x,y
+
+def pogod(x:list,y:list):
+    """Kirjeldus...
+    :param list x: Inimeste järjend
+    :param list y: Palgade järjend
+    :rtype: list, list
+    """
+    vali=input("Kas soovite teada 1 inimese (1), mitme inimese (2) või kõigi (3) palka? ")
+    while vali not in ["1","2","3"]:
+        vali=input("Kirjtua ainult 1, 2 või 3 ")
+    if vali in ["3","1"]:
+        aasta=input("Mitme aasta pärast soovite palka teada? ")
+        while aasta.isdigit()==False or aasta=="0":
+            aasta=input("Kirjtua õige arv ")
+    if vali=="3":
+        for o in range(0,len(x)):
+            newy=y[o]
+            for i in range(0,int(aasta)):
+                newy+=newy*0.05
+            print(f"{x[o]} palk {aasta} aasta pärast on {round(newy,2)} eurot")
+    elif vali=="1":
+        nimi=input("Keda soovite muudatustest teada? ")
+        while nimi not in x:
+            nimi=input("Kirjuta õige nimi ")
+        ind=x.index(nimi)
+        newy=y[ind]
+        for i in range(0,int(aasta)):
+            newy+=newy*0.05
+        print(f"{nimi} palk {aasta} aasta pärast on {round(newy,2)} eurot")
+    else:
+        arv=input("Mitut inimest me testime? ")
+        while arv.isdigit()==False or int(arv)==0 or int(arv)>len(x):
+            arv=input("Kirjuta õige arv ")
+        for i in range(0,int(arv)): 
+            nimi=input(f"Keda sa tahad kontrollida {i+1}? ")
+            while nimi not in x:
+                nimi=input("Kirjuta õige nimi ")
+            aasta=input("Mitme aasta pärast soovite palka teada? ")
+            while aasta.isdigit()==False or aasta=="0":
+                aasta=input("Kirjtua õige arv ")
+            ind=x.index(nimi)
+            newy=y[ind]
+            for i in range(0,int(aasta)):
+                newy+=newy*0.05
+            print(f"{nimi} palk {aasta} aasta pärast on {round(newy,2)} eurot")
+
+def petew(x:list):
+    """Kirjeldus...
+    :param list x: Inimeste järjend
+    :rtype: list
+    """
+    for i in range(0,len(x),3):
+        neni=input("Kirjuta uus nimi ")
+        while neni.isdigit() or len(neni)<1:
+            neni=input("Kirjuta õige nimi ")
+        x.pop(i)
+        x.insert(i,neni)
+    return x
