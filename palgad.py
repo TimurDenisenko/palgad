@@ -10,7 +10,8 @@ while True:
  0-Stop programm\n 1-Vaata nimed ja palgad\n 2-Lisa andmed\n 3-Kustutage inimene ja tema palk\n 4-Leia kõrgeim palk ja kes seda saab
  5-Leia väiksem palk ja kes seda saab\n 6-Leia kes on saama palk\n 7-Leia palk nimi abiga\n 8-Leia kes saab palk suurem, väiksem või täpselt kui palk
  9-Leia top 3 inimesed kes saab väike palk ja suur palk\n 10-Otsi keskmine palk ja kes on saada suurem\n 11-Otsi maksuvaba palk
- 12-Sorteerimine\n 13-Otsige üles, kes teenivad alla keskmise palga, ja eemaldage nad\n 14-Tee ilus nimekiri\n
+ 12-Sorteerimine\n 13-Otsige üles, kes teenivad alla keskmise palga, ja eemaldage nad\n 14-Tee ilus nimekiri
+ 15-Uuri välja inimeste palk N aasta pärast\n 16-Nimetage ümber iga 3 inimese järel \n
 """)
     menu=int(menu)
     if menu==0:
@@ -47,6 +48,11 @@ while True:
         print(inimesed,palgad)
     elif menu==14:
         inimesed,palgad=tint(inimesed,palgad)
+        print(inimesed,palgad)
+    elif menu==15:
+        pogod(inimesed,palgad)
+    elif menu==16:
+        inimesed=petew(inimesed)
         print(inimesed,palgad)
     else:
         print("Kirjuta õige arv")
