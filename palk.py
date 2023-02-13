@@ -32,9 +32,9 @@ def kip(x:list,y:list):
     """
     kopia=x.copy()
     print(x,y)
-    nimi=input("Kirjuta nimi mis tahad kustuda ").title()
+    nimi=input("Kirjuta nimi mis tahad kustuda ")
     while nimi.isdigit() or len(nimi)<2 or nimi not in x:
-        nimi=input("Kirjuta õige nimi! ").title()
+        nimi=input("Kirjuta õige nimi! ")
     j=x.count(nimi)
     if j!=1:
         print("Siin on mõned inimesed sama nimega")
